@@ -46,7 +46,6 @@ jobs:
           
       - name: lambda setup
         run: |
-          zappa deploy dev
           zappa update
           zappa invoke apps.function
           
