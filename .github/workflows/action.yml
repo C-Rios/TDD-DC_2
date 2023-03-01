@@ -47,6 +47,7 @@ jobs:
           
       - name: lambda setup
         run: |
+          source env/bin/activate
           zappa update
           zappa invoke apps.function
           
