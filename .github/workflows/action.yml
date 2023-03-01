@@ -29,6 +29,15 @@ jobs:
         with:
           python-version: 'pypy3.8'
           
+      - name: setup enviroment
+        run: |
+          pip install virtualenv
+          virtualenv env
+          source env/bin/activate
+          pip install zappa
+          pip install -r requirements.txt
+          
+          
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -39,11 +48,6 @@ jobs:
           
       - name: lambda setup
         run: |
-          pip install virtualenv
-          virtualenv env
-          source env/bin/activate
-          pip install zappa
-          pip install -r requirements.txt
           source env/bin/activate
           zappa update
           zappa invoke apps.function
